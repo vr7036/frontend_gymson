@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
-import { useParams, Link } from 'react-router-dom'; // Import Link from react-router-dom
-
-// import './GymDetails.css'; // Import CSS file
-
+import { useParams, Link } from 'react-router-dom';
+import './GymDetails.css'; // Importing CSS file
 
 const GymDetails = () => {
     const { id } = useParams();
@@ -36,21 +34,25 @@ const GymDetails = () => {
     if (!gym) return <div>Loading...</div>;
 
     return (
-        <div>
-            <h1>{gym.name}</h1>
-            <p>Location: {gym.location}</p>
-            <p>Rating: {gym.rating}</p>
-            <h2>Update Rating</h2>
-            <input
-                type="number"
-                placeholder="Rating"
-                value={rating}
-                onChange={(e) => setRating(e.target.value)}
-            />
-            <button onClick={updateRating}>Update Rating</button>
-            
-            {/* Back Button */}
-            <Link to="/">Back to Gym List</Link>
+        <div className="container">
+            <div className="header">
+                <h1>{gym.name}</h1>
+            </div>
+            <div className="details">
+                <p>Location: {gym.location}</p>
+                <p>Rating: {gym.rating}</p>
+            </div>
+            <div className="update-rating">
+                <h2>Update Rating</h2>
+                <input
+                    type="number"
+                    placeholder="Rating"
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
+                />
+                <button onClick={updateRating}>Update Rating</button>
+            </div>
+            <Link to="/" className="back-button">Back to Gym List</Link>
         </div>
     );
 };
